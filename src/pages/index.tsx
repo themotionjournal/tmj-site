@@ -1,8 +1,14 @@
 import Head from "next/head";
 import { Space_Grotesk, Inter } from "next/font/google";
 
-const space = Space_Grotesk({ subsets: ["latin"], weights: ["400","500","700"], variable: "--font-display" } as any);
-const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
+const space = Space_Grotesk({
+  subsets: ["latin"],
+  weight: ["400", "500", "700"],
+});
+const inter = Inter({
+  subsets: ["latin"],
+  weight: ["400", "500", "700"],
+});
 
 export default function Home() {
   return (
@@ -13,8 +19,11 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
 
-      <div className={`${space.variable} ${inter.variable}`} style={{ minHeight: "100vh", background: "#0a0a0a" }}>
-        {/* sfumature sottili per non avere “nero morto” */}
+      <div
+        className={`${space.className} ${inter.className}`}
+        style={{ minHeight: "100vh", background: "#0a0a0a" }}
+      >
+        {/* velature leggere per non avere nero piatto */}
         <div
           aria-hidden
           style={{
@@ -41,17 +50,18 @@ export default function Home() {
             textAlign: "center",
           }}
         >
-          {/* Logo (opzionale): metti /public/logo.svg e si vedrà */}
+          {/* Logo opzionale: /public/logo.svg */}
           <img
             src="/logo.svg"
             alt="The Motion Journal"
             style={{ width: 56, height: "auto", marginBottom: 18, opacity: 0.9 }}
-            onError={(e) => { (e.currentTarget as HTMLImageElement).style.display = "none"; }}
+            onError={(e) => {
+              (e.currentTarget as HTMLImageElement).style.display = "none";
+            }}
           />
 
           <h1
             style={{
-              fontFamily: "var(--font-display), ui-sans-serif, system-ui",
               fontWeight: 700,
               letterSpacing: "-0.02em",
               lineHeight: 1.02,
@@ -63,7 +73,6 @@ export default function Home() {
 
           <p
             style={{
-              fontFamily: "var(--font-sans), ui-sans-serif, system-ui",
               marginTop: 12,
               color: "#c9c9c9",
               maxWidth: 680,
@@ -73,16 +82,20 @@ export default function Home() {
             COMING SOON
           </p>
 
-          {/* Contatto (facoltativo) */}
           <p
             style={{
-              fontFamily: "var(--font-sans), ui-sans-serif, system-ui",
               marginTop: 16,
               color: "#9b9b9b",
               fontSize: 14,
             }}
           >
-            Contatti: <a href="mailto:hello@themotionjournal.com" style={{ color: "#e7e7e7", textDecoration: "underline" }}>hello@themotionjournal.com</a>
+            Contatti:{" "}
+            <a
+              href="mailto:hello@themotionjournal.com"
+              style={{ color: "#e7e7e7", textDecoration: "underline" }}
+            >
+              hello@themotionjournal.com
+            </a>
           </p>
         </main>
 
@@ -97,7 +110,6 @@ export default function Home() {
             alignItems: "center",
             justifyContent: "center",
             color: "#9b9b9b",
-            fontFamily: "var(--font-sans), ui-sans-serif, system-ui",
             fontSize: 12,
           }}
         >
