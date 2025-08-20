@@ -1,8 +1,8 @@
-import '@/styles/globals.css'
 import type { AppProps } from 'next/app'
-import SmoothScroll from '@/components/SmoothScroll'
+import '../styles/globals.css'
+import SmoothScroll from '../components/SmoothScroll'
 
-export default function App({ Component, pageProps }: AppProps) {
+export default function MyApp({ Component, pageProps }: AppProps) {
   return (
     <>
       <SmoothScroll />
