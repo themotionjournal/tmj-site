@@ -1,3 +1,80 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* ---------- Font (Google) ---------- */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Unbounded:wght@600;800&display=swap');
+
+/* ---------- Theme (CSS variables) ----------
+   Cambia data-theme sul <body> per variare l’accento:
+   - default (field) = verde elegante
+   - deepblue       = blu profondo
+   - onyx           = nero grafite
+------------------------------------------------ */
+:root {
+  --bg:       #0b0b0c;
+  --fg:       #f6f7f7;
+  --muted:    #a8adb2;
+  --card:     rgba(255,255,255,.04);
+  --border:   rgba(255,255,255,.12);
+
+  /* accent default = field green */
+  --accent:   #2e7b62;
+  --accent-2: #1e4e40;
+}
+body[data-theme="deepblue"] {
+  --accent:   #1f3e72;
+  --accent-2: #122642;
+}
+body[data-theme="onyx"] {
+  --accent:   #2b2b2b;
+  --accent-2: #1a1a1a;
+}
+
+/* ---------- Base ---------- */
+html, body {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+}
+* { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+
+@layer base {
+  h1, h2, .display {
+    @apply font-extrabold;
+    font-family: "Unbounded", Inter, system-ui, -apple-system, sans-serif;
+    letter-spacing: -0.02em;
+  }
+}
+
+/* Utilities legate alle vars (Tailwind arbitrary) */
+.btn-primary {
+  @apply px-5 py-2 rounded-md text-sm font-semibold;
+  color: #0a0a0a;
+  background: var(--accent);
+}
+.btn-primary:hover { filter: brightness(.95); }
+
+.badge {
+  @apply text-[10px] uppercase tracking-widest rounded-full px-2 py-1;
+  background: color-mix(in srgb, var(--accent) 20%, transparent);
+  border: 1px solid var(--accent);
+  color: var(--fg);
+  opacity: .85;
+}
+
+.card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+}
+
+/* sottile griglia decorativa */
+.grid-overlay {
+  background-image:
+    linear-gradient(transparent 95%, rgba(255,255,255,.06) 95%),
+    linear-gradient(90deg, transparent 95%, rgba(255,255,255,.06) 95%);
+  background-size: 28px 28px, 28px 28px;
+  opacity: .15;
+  pointer-events: none;
+}
