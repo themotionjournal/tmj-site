@@ -91,10 +91,10 @@ export default function Home() {
           >
             Contatti:{" "}
             <a
-              href="mailto:hello@themotionjournal.com"
+              href="mailto:themotionjournal@gmail.com"
               style={{ color: "#e7e7e7", textDecoration: "underline" }}
             >
-              hello@themotionjournal.com
+              themotionjournal@gmail.com
             </a>
           </p>
         </main>
