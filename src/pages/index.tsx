@@ -1,252 +1,145 @@
-import Head from "next/head";
-import Image from "next/image";
-import { motion } from "framer-motion";
+import Head from 'next/head'
+import Link from 'next/link'
+import { motion } from 'framer-motion'
+import { Instagram, Youtube, Linkedin, Mail } from 'lucide-react'
+
+const fadeIn = {
+  hidden: { opacity: 0, y: 24 },
+  show:   { opacity: 1, y: 0, transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1] } }
+}
 
 export default function Home() {
   return (
     <>
       <Head>
         <title>The Motion Journal</title>
-        <meta
-          name="description"
-          content="Motion, craft, stories. Reviews, how-to e report dal set: camera movement, grip e workflow."
-        />
-        <meta property="og:title" content="The Motion Journal" />
-        <meta
-          property="og:description"
-          content="Motion, craft, stories. Reviews, how-to e report dal set."
-        />
-        <meta property="og:type" content="website" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="description" content="The Motion Journal — reports, breakdowns and craft of moving images." />
       </Head>
 
-      {/* Cambia tema con body[data-theme] se vuoi (deepblue | onyx) */}
-      <main className="relative min-h-screen" suppressHydrationWarning>
-        <div className="grid-overlay absolute inset-0" />
+      {/* Background “Igloo-vibe”: nero profondo + sfumature verde/blu */}
+      <div className="relative min-h-screen text-zinc-100 overflow-x-hidden">
+        <div
+          aria-hidden
+          className="pointer-events-none fixed inset-0 -z-10"
+          style={{
+            background:
+              'radial-gradient(60% 40% at 80% 10%, rgba(8,40,22,.35) 0%, transparent 60%),' +
+              'radial-gradient(50% 35% at 20% 0%, rgba(7,22,52,.35) 0%, transparent 55%),' +
+              'linear-gradient(180deg, #0A0A0A 0%, #0B0B0B 100%)'
+          }}
+        />
 
         {/* NAV */}
-        <header className="sticky top-0 z-20 backdrop-blur bg-[rgba(12,12,12,.6)] border-b border-[var(--border)]">
-          <nav className="container max-w-6xl h-14 flex items-center justify-between">
-            <div className="flex items-center gap-3">
-              <Image src="/logo.svg" alt="TMJ" width={26} height={26} priority />
-              <span className="text-xs tracking-widest opacity-80">
-                THE MOTION JOURNAL
-              </span>
-            </div>
-            <div className="flex items-center gap-5 text-sm">
-              <a className="opacity-80 hover:opacity-100" href="#manifesto">
-                Manifesto
-              </a>
-              <a className="opacity-80 hover:opacity-100" href="#topics">
-                Topics
-              </a>
-              <a className="opacity-80 hover:opacity-100" href="#highlights">
-                Highlights
-              </a>
-              <a className="opacity-80 hover:opacity-100" href="#join">
-                Join
-              </a>
-            </div>
+        <header className="flex items-center justify-between px-6 md:px-10 py-5">
+          <div className="flex items-center gap-3">
+            <img src="/logo.svg" alt="TMJ" className="h-7 w-auto" />
+            <span className="text-sm tracking-widest uppercase text-zinc-400">The Motion Journal</span>
+          </div>
+          <nav className="hidden md:flex items-center gap-7 text-sm text-zinc-300">
+            <Link href="/about" className="hover:text-white transition-colors">About</Link>
+            <Link href="/reports" className="hover:text-white transition-colors">Reports</Link>
+            <Link href="/contact" className="hover:text-white transition-colors">Contact</Link>
           </nav>
         </header>
 
         {/* HERO */}
-        <section className="container max-w-6xl px-4 py-16">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="flex flex-col md:flex-row md:items-center md:justify-between gap-8"
-          >
-            <div className="max-w-2xl">
-              <h1 className="display text-4xl md:text-6xl leading-tight">
-                Motion, Craft, Stories.
-              </h1>
-              <p className="mt-4 text-[var(--muted)] max-w-xl">
-                Il taccuino operativo su camera movement, grip, attrezzatura e
-                workflow. Recensioni oneste, how-to pratici, report dal set.
+        <main className="px-6 md:px-10">
+          <section className="relative mx-auto max-w-6xl pt-16 md:pt-24">
+            <motion.h1
+              variants={fadeIn}
+              initial="hidden"
+              animate="show"
+              className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight"
+            >
+              The Motion Journal
+            </motion.h1>
+
+            <motion.p
+              variants={fadeIn}
+              initial="hidden"
+              animate="show"
+              className="mt-5 max-w-2xl text-zinc-300"
+              style={{ transitionDelay: '120ms' }}
+            >
+              Un hub editoriale sull’immagine in movimento: breakdown, making-of,
+              strumenti e visioni creative per cineasti, operatori e curiosi del
+              linguaggio visivo.
+            </motion.p>
+
+            {/* CTA */}
+            <motion.div
+              variants={fadeIn}
+              initial="hidden"
+              animate="show"
+              style={{ transitionDelay: '220ms' }}
+              className="mt-8 flex flex-wrap items-center gap-4"
+            >
+              <Link
+                href="/reports"
+                className="inline-flex items-center rounded-full bg-white text-black px-5 py-3 text-sm font-medium hover:bg-zinc-200 transition-colors"
+              >
+                Leggi i report
+              </Link>
+              <Link
+                href="/about"
+                className="inline-flex items-center rounded-full border border-zinc-700 px-5 py-3 text-sm hover:border-zinc-500 hover:text-white transition-colors"
+              >
+                Manifesto
+              </Link>
+            </motion.div>
+
+            {/* “Smash/Manifesto” */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.98 }}
+              animate={{ opacity: 1, scale: 1, transition: { delay: 0.25, duration: 0.8, ease: [0.22,1,0.36,1] } }}
+              className="mt-16 md:mt-24 rounded-2xl border border-zinc-800 bg-black/30 backdrop-blur-sm p-6 md:p-9"
+            >
+              <h2 className="text-xl md:text-2xl font-semibold tracking-tight">Manifesto</h2>
+              <p className="mt-3 leading-relaxed text-zinc-300">
+                Crediamo nella <span className="text-zinc-100">cura del movimento</span>, nel
+                <span className="text-zinc-100"> rigore artigianale</span> e nella
+                <span className="text-emerald-300/90"> libertà di sperimentare</span>. Raccogliamo
+                processi, errori, soluzioni e casi studio per elevare la qualità delle
+                immagini in ogni contesto: cinema, set, branded content.
               </p>
+            </motion.div>
 
-              <div className="mt-6 flex flex-wrap gap-3">
-                <a href="#join" className="btn-primary">
-                  Iscriviti agli update
-                </a>
-                <a
-                  href="https://instagram.com/tmj_the_motion_journal"
-                  target="_blank"
-                  rel="noreferrer"
-                  className="px-5 py-2 rounded-md border border-[var(--border)] text-sm hover:border-[var(--accent)]"
+            {/* Social animati */}
+            <motion.div
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0, transition: { delay: 0.35, duration: 0.6 } }}
+              className="mt-12 flex items-center gap-5"
+            >
+              {[
+                { href: 'https://instagram.com/', icon: Instagram, label: 'Instagram' },
+                { href: 'https://youtube.com/', icon: Youtube, label: 'YouTube' },
+                { href: 'https://www.linkedin.com/', icon: Linkedin, label: 'LinkedIn' },
+                { href: 'mailto:hello@themotionjournal.com', icon: Mail, label: 'Email' }
+              ].map(({ href, icon: Icon, label }) => (
+                <Link
+                  key={label}
+                  href={href}
+                  aria-label={label}
+                  target={href.startsWith('http') ? "_blank" : undefined}
+                  className="group relative inline-flex h-11 w-11 items-center justify-center rounded-full border border-zinc-700/70 bg-zinc-900/40 backdrop-blur-sm hover:-translate-y-0.5 hover:border-zinc-500 transition-all"
                 >
-                  Instagram
-                </a>
-              </div>
+                  <Icon className="h-5 w-5 text-zinc-300 group-hover:text-white transition-colors" />
+                  <span className="sr-only">{label}</span>
+                </Link>
+              ))}
+            </motion.div>
+          </section>
 
-              <div className="mt-6 flex items-center gap-2">
-                <span className="badge">gear</span>
-                <span className="badge">workflow</span>
-                <span className="badge">field notes</span>
-              </div>
+          {/* Footer */}
+          <footer className="mx-auto max-w-6xl py-20 md:py-24 text-sm text-zinc-400">
+            <div className="border-t border-zinc-800/80 pt-8 flex items-center justify-between">
+              <span>© {new Date().getFullYear()} The Motion Journal</span>
+              <span className="text-zinc-500">Craft · Motion · Camera</span>
             </div>
-
-            <div className="w-full md:w-[360px]">
-              <div className="card p-6 shadow-glow">
-                <div className="border border-[var(--accent)] rounded-lg p-4">
-                  <Image
-                    src="/logo.svg"
-                    alt="TMJ Logo"
-                    width={64}
-                    height={64}
-                    className="opacity-90"
-                  />
-                  <h3 className="mt-4 font-bold">Payoff</h3>
-                  <p className="mt-1 text-sm text-[var(--muted)]">
-                    The Motion Journal — strumenti, procedure e test per far
-                    risparmiare tempo e rogne sul set.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </motion.div>
-        </section>
-
-        {/* MANIFESTO */}
-        <section id="manifesto" className="container max-w-6xl px-4 py-10">
-          <div className="card p-6 md:p-8">
-            <h2 className="text-2xl font-bold">Manifesto</h2>
-            <div className="mt-3 space-y-2 text-[var(--muted)] leading-relaxed">
-              <p>1. Onestà tecnica: dati e prove, non brochure.</p>
-              <p>2. Sicurezza prima: grip, pesi, setup e bilanciamento corretti.</p>
-              <p>3. Tempo è re: procedure replicabili, checklist e scorciatoie pulite.</p>
-              <p>4. Zero fuffa: se una cosa non serve, non la portiamo sul set.</p>
-            </div>
-          </div>
-        </section>
-
-        {/* TOPICS */}
-        <section id="topics" className="container max-w-6xl px-4 py-10">
-          <div className="grid md:grid-cols-3 gap-6">
-            {[
-              {
-                title: "Reviews",
-                desc: "Test reali di slider, head, remote, dolly e accessori.",
-                tag: "gear",
-              },
-              {
-                title: "How-To",
-                desc: "Setup, bilanciamento, trucchi di messa in opera e sicurezza.",
-                tag: "workflow",
-              },
-              {
-                title: "Reports",
-                desc: "Case study dal set: cosa ha funzionato, cosa no e perché.",
-                tag: "field",
-              },
-            ].map((c, i) => (
-              <motion.article
-                key={c.title}
-                initial={{ opacity: 0, y: 14 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.3 }}
-                transition={{ delay: i * 0.06 }}
-                className="card p-5"
-              >
-                <span className="badge">{c.tag}</span>
-                <h3 className="mt-2 text-xl font-semibold">{c.title}</h3>
-                <p className="mt-1 text-sm text-[var(--muted)]">{c.desc}</p>
-                <a
-                  href="#"
-                  className="mt-3 inline-block text-sm underline decoration-[var(--accent)] underline-offset-4 hover:opacity-90"
-                >
-                  Entra nella sezione →
-                </a>
-              </motion.article>
-            ))}
-          </div>
-        </section>
-
-        {/* HIGHLIGHTS */}
-        <section id="highlights" className="container max-w-6xl px-4 py-10">
-          <h2 className="text-2xl font-bold mb-4">Highlights</h2>
-          <div className="grid md:grid-cols-3 gap-6">
-            {[1, 2, 3].map((n) => (
-              <div key={n} className="card p-5">
-                <span className="text-xs opacity-70">In arrivo</span>
-                <h4 className="mt-1 font-semibold">Titolo articolo #{n}</h4>
-                <p className="mt-1 text-sm text-[var(--muted)]">
-                  Abstract dell’articolo: 3-4 righe di anteprima.
-                </p>
-                <div className="mt-3 h-28 rounded-md bg-[var(--accent-2)]/35 border border-[var(--accent)]/40" />
-              </div>
-            ))}
-          </div>
-        </section>
-
-        {/* JOIN */}
-        <section id="join" className="container max-w-6xl px-4 py-16">
-          <div className="card p-6 md:p-8">
-            <h3 className="text-xl font-bold">Resta aggiornato</h3>
-            <p className="mt-2 text-sm text-[var(--muted)]">
-              Metti la mail: invieremo un recap con articoli nuovi e strumenti
-              utili.
-            </p>
-            <form className="mt-4 flex flex-col sm:flex-row gap-3">
-              <input
-                type="email"
-                placeholder="tu@email.com"
-                className="w-full sm:w-80 px-3 py-2 rounded-md bg-black border border-[var(--border)] text-sm outline-none focus:border-[var(--accent)]"
-              />
-              <button className="btn-primary">Iscriviti</button>
-            </form>
-            <p className="mt-3 text-xs text-[var(--muted)]">
-              Oppure scrivi a{" "}
-              <a className="underline" href="mailto:hello@themotionjournal.com">
-                hello@themotionjournal.com
-              </a>
-              .
-            </p>
-          </div>
-        </section>
-
-        {/* FOOTER */}
-        <footer className="border-t border-[var(--border)]">
-          <div className="container max-w-6xl h-14 flex items-center justify-between text-xs text-[var(--muted)]">
-            <span>© {new Date().getFullYear()} The Motion Journal</span>
-            <div className="flex items-center gap-4">
-              <a
-                className="hover:text-[var(--fg)]"
-                href="https://instagram.com/tmj_the_motion_journal"
-                target="_blank"
-                rel="noreferrer"
-              >
-                @tmj_the_motion_journal
-              </a>
-              <ThemeToggle />
-            </div>
-          </div>
-        </footer>
-      </main>
+          </footer>
+        </main>
+      </div>
     </>
-  );
-}
-
-/* Mini toggle tema (client-side) */
-function ThemeToggle() {
-  return (
-    <div className="flex items-center gap-1">
-      <button
-        onClick={() => document.body.removeAttribute("data-theme")}
-        className="h-6 w-6 rounded-full border border-[var(--border)] bg-[var(--accent)]"
-        title="Field"
-      />
-      <button
-        onClick={() => document.body.setAttribute("data-theme", "deepblue")}
-        className="h-6 w-6 rounded-full border border-[var(--border)] bg-[#1f3e72]"
-        title="Deep Blue"
-      />
-      <button
-        onClick={() => document.body.setAttribute("data-theme", "onyx")}
-        className="h-6 w-6 rounded-full border border-[var(--border)] bg-[#2b2b2b]"
-        title="Onyx"
-      />
-    </div>
-  );
+  )
 }
