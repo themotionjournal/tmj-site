@@ -8,3 +8,5 @@
 
 html, body, #__next { height: 100%; background: #0A0A0A; }
 .font-sans { font-family: var(--font-inter), ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol"; }
+* { -webkit-tap-highlight-color: transparent; }
+::-webkit-scrollbar { width: 0; height: 0; }
